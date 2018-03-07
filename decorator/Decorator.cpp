@@ -18,6 +18,7 @@
 class Component {
 public:
   virtual void operation() = 0;
+  virtual ~Component(){}
   // ...
 };
 
@@ -46,6 +47,10 @@ public:
 
   virtual void operation() {
     component->operation();
+  }
+  
+  ~Decorator() {
+    delete component;
   }
   // ...
 
@@ -89,6 +94,7 @@ int main()
               new ConcreteDecoratorB(new ConcreteComponent));
 
   component->operation();
+  delete component;
 
   return 0;
 }
